@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 class Excellence_Employee_Adminhtml_EmployeeController extends Mage_Adminhtml_Controller_action
 {
@@ -210,5 +210,19 @@ class Excellence_Employee_Adminhtml_EmployeeController extends Mage_Adminhtml_Co
         $response->setBody($content);
         $response->sendResponse();
         die;
+    }
+
+    /* To use ajax search*/
+    public function gridAction()
+    {
+        $this->loadLayout();
+        $this->getResponse()->setBody(
+            $this->getLayout()->createBlock('employee/adminhtml_employee_grid')->toHtml()
+        );
+    }
+
+    public function formAction(){
+    	$this->loadLayout();
+        $this->getResponse()->setBody("<script>alert('Ajax Test')</script><h4>This tab is loaded using ajax</h4>");
     }
 }

@@ -118,6 +118,11 @@
             <employee>
                 <class>Excellence_Employee_Block</class>
             </employee>
+            <adminhtml>
+                <rewrite>
+                    <widget_grid>Excellence_Employee_Block_Adminhtml_Employee_Grid</widget_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <helpers>
             <employee>
