@@ -20,8 +20,8 @@ class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tabs extends Mage_Adminh
       ));
 
       $this->addTab('form_section2', array(
-          'label'     => Mage::helper('employee')->__('AJAX Tab Check'),
-          'title'     => Mage::helper('employee')->__('AJAX Tab Check'),
+          'label'     => Mage::helper('employee')->__('AJAX Tab'),
+          'title'     => Mage::helper('employee')->__('AJAX Tab'),
           'url'       => $this->getUrl('*/*/form', array('_current' => true)),
           'class'     => 'ajax',
       ));
