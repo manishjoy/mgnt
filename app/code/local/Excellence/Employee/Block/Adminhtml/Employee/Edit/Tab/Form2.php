@@ -1,6 +1,6 @@
 <?php
 
-class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form
+class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tab_Form2 extends Mage_Adminhtml_Block_Widget_Form
 {
   protected function _prepareForm()
   {
@@ -15,17 +15,11 @@ class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tab_Form extends Mage_Ad
           'name'      => 'title',
       ));
 
-      $fieldset->addField('filename', 'file', array(
-          'label'     => Mage::helper('employee')->__('File'),
-          'required'  => false,
-          'name'      => 'filename',
-	  ));
-
-      // $fieldset->addField('date', 'date', array(
-      //     'label'     => Mage::helper('employee')->__('Date'),
-      //     'image' => $this->getSkinUrl('images/grid-cal.gif'),
-      //     'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT)
-      //   ));
+      $fieldset->addField('date', 'date', array(
+          'label'     => Mage::helper('employee')->__('Date'),
+          'image' => $this->getSkinUrl('images/grid-cal.gif'),
+          'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT)
+        ));
 		
       $fieldset->addField('status', 'select', array(
           'label'     => Mage::helper('employee')->__('Status'),
@@ -43,22 +37,15 @@ class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tab_Form extends Mage_Ad
           ),
       ));
 
-      // $fieldset->addField('custom', 'text', array(
-      //   'label' => Mage::helper('employee')->__('Custom'),
-      //   'class' => 'required-entry',
-      //   'required'=> true,
-      //   'name'=> 'custom',
-      //   ));
-     
-      $fieldset->addField('content', 'editor', array(
-          'name'      => 'content',
-          'label'     => Mage::helper('employee')->__('Content'),
-          'title'     => Mage::helper('employee')->__('Content'),
-          'style'     => 'width:700px; height:200px;',
-          'wysiwyg'   => false,
-          'required'  => true,
-      ));
-     
+      $fieldset->addType('custom_field', 'Excellence_Employee_Block_Adminhtml_Employee_Edit_Tab_Field_Custom');
+
+      $fieldset->addField('custom_field', 'custom_field', array(
+              'label'     => Mage::helper('employee')->__('Custom Radio Buttons'),
+              'name'      => 'Checkbox',
+              'custom1'  => 'Custom1 Value',
+              'custom2'  => 'Custom2 Value',
+    ));
+
       if ( Mage::getSingleton('adminhtml/session')->getEmployeeData() )
       {
           $form->setValues(Mage::getSingleton('adminhtml/session')->getEmployeeData());

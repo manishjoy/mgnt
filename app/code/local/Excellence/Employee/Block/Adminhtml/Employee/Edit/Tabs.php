@@ -18,6 +18,19 @@ class Excellence_Employee_Block_Adminhtml_Employee_Edit_Tabs extends Mage_Adminh
           'title'     => Mage::helper('employee')->__('Item Information'),
           'content'   => $this->getLayout()->createBlock('employee/adminhtml_employee_edit_tab_form')->toHtml(),
       ));
+
+      $this->addTab('form_section2', array(
+          'label'     => Mage::helper('employee')->__('AJAX Tab'),
+          'title'     => Mage::helper('employee')->__('AJAX Tab'),
+          'url'       => $this->getUrl('*/*/form', array('_current' => true)),
+          'class'     => 'ajax',
+      ));
+
+      $this->addTab('form_section3', array(
+          'label'     => Mage::helper('employee')->__('Important Fileds & Custom Field'),
+          'title'     => Mage::helper('employee')->__('Important Fileds & Custom Field'),
+          'content'   => $this->getLayout()->createBlock('employee/adminhtml_employee_edit_tab_form2')->toHtml(),
+      ));
      
       return parent::_beforeToHtml();
   }

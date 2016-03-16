@@ -9,6 +9,8 @@ class Excellence_Employee_Block_Adminhtml_Employee_Grid extends Mage_Adminhtml_B
       $this->setDefaultSort('employee_id');
       $this->setDefaultDir('ASC');
       $this->setSaveParametersInSession(true);
+      /* To use ajax search*/
+      $this->setUseAjax(true);
   }
 
   protected function _prepareCollection()
@@ -64,6 +66,12 @@ class Excellence_Employee_Block_Adminhtml_Employee_Grid extends Mage_Adminhtml_B
                         'caption'   => Mage::helper('employee')->__('Edit'),
                         'url'       => array('base'=> '*/*/edit'),
                         'field'     => 'id'
+                    ),
+                    array(
+                        'caption'   => Mage::helper('employee')->__('Delete'),
+                        'url'       => array('base'=> '*/*/delete'),
+                        'confirm'  => Mage::helper('employee')->__('Are you sure?'),
+                        'field'     => 'id'
                     )
                 ),
                 'filter'    => false,
@@ -71,6 +79,15 @@ class Excellence_Employee_Block_Adminhtml_Employee_Grid extends Mage_Adminhtml_B
                 'index'     => 'stores',
                 'is_system' => true,
         ));
+
+        // $this->addColumn('dropdown1', array(
+        //   'header'    => Mage::helper('employee')->__('Employee Type'),
+        //   'align'     =>'left',
+        //   'width'     => '100',
+        //   'index'     => 'type',
+        //   'type'      => 'options',
+        //   'options'    => array('1' => 'Normal','2' => 'Admin' , '3' => 'Guest')
+        // ));
 		
 		$this->addExportType('*/*/exportCsv', Mage::helper('employee')->__('CSV'));
 		$this->addExportType('*/*/exportXml', Mage::helper('employee')->__('XML'));
@@ -112,5 +129,28 @@ class Excellence_Employee_Block_Adminhtml_Employee_Grid extends Mage_Adminhtml_B
   {
       return $this->getUrl('*/*/edit', array('id' => $row->getId()));
   }
+
+  /* To use ajax search*/
+  // public function getGridUrl()
+  // {
+  //     return $this->getUrl('*/*/grid', array('_current'=>true));
+  // }
+
+  // protected function _addColumnFilterToCollection($column)
+  // {
+  //     if ($this->getCollection()) {
+  //         // if ($column->getId() == 'websites') {
+  //         //     $this->getCollection()->joinField('websites',
+  //         //         'catalog/product_website',
+  //         //         'website_id',
+  //         //         'product_id=entity_id',
+  //         //         null,
+  //         //         'left');
+  //         // }
+  //       print_r("expression"); die();
+  //     }
+  //     return $this;
+  //     // return parent::_addColumnFilterToCollection($column);
+  // }
 
 }
